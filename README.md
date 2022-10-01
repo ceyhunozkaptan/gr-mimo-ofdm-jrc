@@ -2,10 +2,18 @@
 MIMO OFDM JRC Transceiver
 
 
-## Installation
 
+# Installation
+
+## Required Libraries
 
 # Usage
 
 
 ## Simulation
+
+# Related Publications
+
+C. D. Ozkaptan, E. Ekici, C. -H. Wang and O. Altintas, "[Optimal Precoder Design for MIMO-OFDM-based Joint Automotive Radar-Communication Networks](https://ieeexplore.ieee.org/abstract/document/9589830/)," 2021 19th International Symposium on Modeling and Optimization in Mobile, Ad hoc, and Wireless Networks (WiOpt), 2021
+
+[ACM TOPS'20](https://ieeexplore.ieee.org/abstract/document/9589830/)
