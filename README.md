@@ -1,5 +1,5 @@
-# gr-mimo_ofdm_jrc
-MIMO OFDM JRC Transceiver
+# MIMO OFDM JRC Transceiver
+
 
 
 
