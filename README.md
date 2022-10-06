@@ -1,16 +1,16 @@
-# MIMO OFDM JRC Transceiver
+## MIMO OFDM Joint Radar-Communication (JRC) Transceiver
 
 
 
 
-# Installation
+## Installation
 
-## Required Libraries
+### Required Libraries
 
-# Usage
+## Usage
 
 
-## Simulation
+### Simulation
 
 # Related Publications
 
