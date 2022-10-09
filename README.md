@@ -4,7 +4,7 @@ This project is developed and tested in Ubuntu 20.04 and Ubuntu 22.04. We recomm
 
 ## Requirements
 
-+ [GnuRadio v3.8.5.0](https://wiki.gnuradio.org/index.php?title=InstallingGR#For_GNU_Radio_3.8_or_Earlier)
++ [GnuRadio v3.8.5.0](https://wiki.gnuradio.org/index.php?title=InstallingGR#For_GNU_Radio_3.8_or_Earlier) (Branch: maint-3.8)
   + [Dependencies for Ubuntu](https://wiki.gnuradio.org/index.php?title=UbuntuInstall#Focal_Fossa_(20.04)_through_Impish_Indri_(21.10))
 + [UHD v4.1.0.5](https://github.com/EttusResearch/uhd/releases/tag/v4.1.0.5)
 + [Eigen3](https://eigen.tuxfamily.org)
