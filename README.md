@@ -16,7 +16,7 @@ This project is developed and tested in Ubuntu 20.04 and Ubuntu 22.04. We recomm
 
 ## Installation
 
-    git clone git://github.com/ceyhunozkaptan/gr-mimo-ofdm-jrc
+    git clone https://github.com/ceyhunozkaptan/gr-mimo-ofdm-jrc.git
     cd gr-mimo-ofdm-jrc
     mkdir build
     cd build
