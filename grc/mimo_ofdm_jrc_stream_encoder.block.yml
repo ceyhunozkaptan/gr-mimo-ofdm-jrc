@@ -1,0 +1,46 @@
+id: mimo_ofdm_jrc_stream_encoder
+label: Data Stream Encoder
+category: '[MIMO OFDM JRC]'
+
+parameters:
+- id: mod_encode
+  label: MCS
+  dtype: int
+  default: mimo_ofdm_jrc.BPSK_1_2
+  options: [mimo_ofdm_jrc.BPSK_1_2, mimo_ofdm_jrc.BPSK_3_4, mimo_ofdm_jrc.QPSK_1_2, mimo_ofdm_jrc.QPSK_3_4,
+      mimo_ofdm_jrc.QAM16_1_2, mimo_ofdm_jrc.QAM16_3_4]
+  option_labels: [BPSK 1/2, BPSK 3/4, QPSK 1/2, QPSK 3/4, 16QAM 1/2, 16QAM 3/4]
+- id: data_len
+  label: Number of Data Subcarriers
+  dtype: int
+- id: N_ss_radar
+  label: Number of Radar Streams
+  dtype: int
+- id: debug
+  label: Debug
+  dtype: bool
+  default: 'False'
+  options: ['True', 'False']
+  option_labels: [Enable, Disable]
+
+inputs:
+-   domain: message
+    id: pdu_in
+
+outputs:
+-   domain: stream
+    dtype: complex
+    multiplicity: '1'
+asserts:
+- ${ mod_encode in range(9) }
+
+templates:
+  imports: import mimo_ofdm_jrc
+  make: mimo_ofdm_jrc.stream_encoder(${mod_encode}, ${data_len}, ${N_ss_radar}, ${debug})
+  callbacks:
+  - set_mcs(${mod_encode})
+
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

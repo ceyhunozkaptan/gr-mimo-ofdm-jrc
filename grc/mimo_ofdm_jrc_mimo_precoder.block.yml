@@ -1,0 +1,111 @@
+id: mimo_ofdm_jrc_mimo_precoder
+label: MIMO OFDM Precoder
+category: '[MIMO OFDM JRC]'
+
+templates:
+  imports: import mimo_ofdm_jrc
+  make: mimo_ofdm_jrc.mimo_precoder(${fft_len}, ${N_tx}, ${N_ss}, ${data_carriers}, ${pilot_carriers},
+        ${pilot_symbols}, ${sync_words}, ${mapped_ltf_symbols}, ${chan_est_file}, ${chan_est_smoothing}, ${radar_log_file}, ${radar_aided}, ${phased_steering}, ${use_radar_streams}, ${len_tag_key},  ${debug})
+  callbacks:
+  - set_chan_est_smoothing(${chan_est_smoothing})
+  - set_radar_aided(${radar_aided})
+  - set_use_radar_streams(${use_radar_streams})
+  - set_phased_steering(${phased_steering})
+  
+parameters:
+-   id: fft_len
+    label: FFT Length
+    dtype: int
+    default: fft_len
+-   id: N_tx
+    label: Number of TX Chains
+    dtype: int
+    default: '1'
+-   id: N_ss
+    label: Number of Data Streams
+    dtype: int
+    default: '1'
+-   id: data_carriers
+    label: Data Subcarriers
+    dtype: raw
+-   id: pilot_carriers
+    label: Pilot Subcarriers
+    dtype: raw
+-   id: pilot_symbols
+    label: Pilot Symbols
+    dtype: raw
+    default: ((),)
+-   id: sync_words
+    label: Preamble Symbols
+    dtype: raw
+    default: ((),)
+-   id: mapped_ltf_symbols
+    label: MIMO LTF Symbols
+    dtype: raw
+-   id: chan_est_file
+    label: Comm. Channel Est. File 
+    dtype: string
+    default: '""'
+    hide: part
+-   id: chan_est_smoothing
+    label: Channel Est. Smoothing
+    dtype: bool
+    default: 'False'
+    options: ['True', 'False']
+    option_labels: [Enable, Disable]
+-   id: radar_log_file
+    label: Radar Log File 
+    dtype: string
+    default: '""'
+    hide: part
+-   id: radar_aided
+    label: Radar-aided Precoding
+    dtype: bool
+    default: 'False'
+    options: ['True', 'False']
+    option_labels: [Enable, Disable]
+-   id: phased_steering
+    label: Phased Steering
+    dtype: bool
+    default: 'False'
+    options: ['True', 'False']
+    option_labels: [Enable, Disable]
+-   id: use_radar_streams
+    label: Use Radar Streams
+    dtype: bool
+    default: 'False'
+    options: ['True', 'False']
+    option_labels: [Enable, Disable]
+    hide: part
+-   id: len_tag_key
+    label: Length tag key
+    dtype: string
+    default: '"packet_len"'
+    hide: part
+-   id: debug
+    label: Debug
+    dtype: bool
+    default: 'False'
+    options: ['True', 'False']
+    option_labels: [Enable, Disable]
+
+inputs:
+-   domain: stream
+    dtype: complex
+    multiplicity: ${ N_ss }
+
+outputs:
+-   domain: stream
+    dtype: complex
+    vlen: ${ fft_len }
+    multiplicity: ${ N_tx }
+
+asserts:
+- ${ N_tx >= N_ss }
+- ${ fft_len > 0 }
+
+
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

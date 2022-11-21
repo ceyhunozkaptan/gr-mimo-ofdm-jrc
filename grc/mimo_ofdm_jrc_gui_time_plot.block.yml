@@ -1,0 +1,42 @@
+id: mimo_ofdm_jrc_gui_time_plot
+label: Time Plot (GUI)
+category: '[MIMO OFDM JRC]'
+
+templates:
+  imports: import mimo_ofdm_jrc
+  make: mimo_ofdm_jrc.gui_time_plot(${interval}, ${y_tag}, ${y_label}, ${y_axis_lim}, ${time_window}, ${label})
+
+parameters:
+-   id: interval
+    label: Update Interval [ms]
+    dtype: int
+    default: '250'
+-   id: y_tag
+    label: Data Tag
+    dtype: string
+    default: '""'
+-   id: y_label
+    label: y-Axis Label
+    dtype: string
+    default: '""'
+-   id: y_axis_lim
+    label: y-Axis Limits
+    dtype: real_vector
+    default: '[]'
+-   id: time_window
+    label: Time Window [s]
+    dtype: float
+    default: '10'
+-   id: label
+    label: Title Label
+    dtype: string
+    default: '""'
+
+inputs:
+-   domain: message
+    id: stats
+    optional: true
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

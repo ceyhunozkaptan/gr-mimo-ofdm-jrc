@@ -1,0 +1,57 @@
+id: mimo_ofdm_jrc_fft_peak_detect
+label: FFT Peak Detector
+category: '[MIMO OFDM JRC]'
+
+parameters:
+-   id: samp_rate
+    label: Sample Rate
+    dtype: int
+-   id: interp_factor
+    label: Interpolation Factor
+    dtype: float
+-   id: threshold
+    label: Threshold [dB]
+    dtype: float
+-   id: samp_protect
+    label: Number protected samples
+    dtype: int
+-   id: max_freq
+    label: Cut frequencies
+    dtype: real_vector
+-   id: cut_max_freq
+    label: Use cut frequencies
+    dtype: bool
+    default: 'False'
+    options: ['True', 'False']
+-   id: len_key
+    label: Packet length key
+    dtype: string
+    default: '"packet_len"'
+
+inputs:
+-   label: IQ in
+    domain: stream
+    dtype: complex
+
+outputs:
+-   label: freq   
+    domain: stream
+    dtype: float
+    multiplicity: '1'
+-   label: phase   
+    domain: stream  
+    dtype: float
+    multiplicity: '1'
+-   label: mag   
+    domain: stream
+    dtype: float
+    multiplicity: '1'
+
+templates:
+  imports: import mimo_ofdm_jrc
+  make: mimo_ofdm_jrc.fft_peak_detect(${samp_rate}, ${interp_factor}, ${threshold}, ${samp_protect}, ${max_freq}, ${cut_max_freq}, ${len_key})
+  callbacks:
+    - set_threshold(${threshold})
+    - set_samp_protect(${samp_protect})
+
+file_format: 1

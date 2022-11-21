@@ -1,0 +1,142 @@
+id: mimo_ofdm_jrc_usrp_mimo_trx
+label: USRP MIMO Transceiver
+category: '[MIMO OFDM JRC]'
+
+templates:
+ imports: import mimo_ofdm_jrc
+ make: mimo_ofdm_jrc.usrp_mimo_trx(${N_mboard}, ${N_tx}, ${N_rx}, ${samp_rate}, ${center_freq}, ${num_delay_samps},
+        ${debug}, ${update_period}, ${args}, ${clock_sources}, ${time_sources},
+        ${antenna_tx}, ${gain_tx}, ${timeout_tx}, ${wait_tx}, ${wire_tx},
+        ${antenna_rx}, ${gain_rx}, ${timeout_rx}, ${wait_rx}, ${lo_offset_rx}, ${wire_rx},
+        ${len_key})
+ callbacks:
+    - set_num_delay_samps(${num_delay_samps})
+    - set_tx_gain(${gain_tx})
+    - set_rx_gain(${gain_rx})
+
+parameters:
+-   id: N_mboard
+    label: Number of MBoards
+    dtype: int
+    default: 1
+-   id: N_tx
+    label: Number of TX
+    dtype: int
+    default: 1
+-   id: N_rx
+    label: Number of RX
+    dtype: int
+    default: 1
+-   id: samp_rate
+    label: Sample rate
+    dtype: int
+-   id: center_freq
+    label: Center Frequency
+    dtype: float
+-   id: num_delay_samps
+    label: TX/RX Delay Samples
+    dtype: int
+    default: 0
+-   id: update_period
+    label: Radar Update Period
+    dtype: float
+-   id: debug
+    label: Debug
+    dtype: bool
+    default: 'False'
+    options: ['True', 'False']
+    option_labels: [Enable, Disable]
+
+-   id: args
+    label: USRP Arguments
+    dtype: string
+    default: '"addr0=192.168.1xx.2, addr1=192.168.1xx.2, master_clock_rate=xxxe6"'
+    hide: part
+-   id: clock_sources
+    label: Clock Sources
+    dtype: string
+    default: '"external,external"'
+    hide: part
+-   id: time_sources
+    label: Time Sources
+    dtype: string
+    default: '"external,external"'
+    hide: part
+
+-   id: antenna_tx
+    label: TX Antenna
+    dtype: string
+    default: '"TX/RX,TX/RX"'
+    hide: part
+-   id: gain_tx
+    label: TX Gain
+    dtype: float
+    hide: part
+-   id: timeout_tx
+    label: TX Timeout
+    dtype: float
+    default: '0.5'
+    hide: part
+-   id: wait_tx
+    label: TX Delay-to-Start
+    dtype: float
+    default: '0.01'
+    hide: part
+-   id: wire_tx
+    label: TX Wire
+    dtype: string
+    default: '""'
+    hide: part
+
+-   id: antenna_rx
+    label: RX Antenna
+    dtype: string
+    hide: part
+    default: '"RX2,RX2"'
+-   id: gain_rx
+    label: RX Gain
+    dtype: float
+    hide: part
+-   id: timeout_rx
+    label: RX Timeout
+    dtype: float
+    default: '0.5'
+    hide: part
+-   id: wait_rx
+    label: RX Delay-to-Start
+    dtype: float
+    default: '0.01'
+    hide: part
+-   id: lo_offset_rx
+    label: RX LO Offset
+    dtype: float
+    default: '0'
+    hide: part
+-   id: wire_rx
+    label: RX Wire
+    dtype: string
+    default: '""'
+    hide: part
+
+-   id: len_key
+    label: Packet Length Key
+    dtype: string
+    default: '"packet_len"'
+    hide: part
+
+inputs:
+-   domain: stream
+    label: tx
+    dtype: complex
+    multiplicity: ${N_tx}
+
+outputs:
+-   domain: stream
+    label: rx
+    dtype: complex
+    multiplicity: ${N_rx}
+
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

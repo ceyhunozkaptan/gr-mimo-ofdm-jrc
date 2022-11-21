@@ -1,0 +1,40 @@
+id: mimo_ofdm_jrc_zero_pad
+label: Zero Padding
+category: '[MIMO OFDM JRC]'
+
+templates:
+  imports: import mimo_ofdm_jrc
+  make: mimo_ofdm_jrc.zero_pad(${debug}, ${pad_front}, ${pad_tail})
+
+parameters:
+-   id: debug
+    label: Debug
+    dtype: bool
+    default: 'False'
+    options: ['True', 'False']
+    option_labels: [Enable, Disable]
+-   id: pad_front
+    label: Pad Front
+    dtype: int
+    default: '0'
+-   id: pad_tail
+    label: Pad Tail
+    dtype: int
+    default: '0'
+
+inputs:
+-   domain: stream
+    dtype: complex
+    multiplicity: '1'
+
+outputs:
+-   domain: stream
+    dtype: complex
+    multiplicity: '1'
+asserts:
+- ${ pad_front >= 0 }
+- ${ pad_tail >= 0 }
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

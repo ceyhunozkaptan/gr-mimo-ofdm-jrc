@@ -1,0 +1,45 @@
+id: mimo_ofdm_jrc_matrix_transpose
+label: Matrix Transpose
+category: '[MIMO OFDM JRC]'
+
+templates:
+  imports: import mimo_ofdm_jrc
+  make: mimo_ofdm_jrc.matrix_transpose(${input_len}, ${output_len}, ${interp_factor},
+        ${debug}, ${len_key})
+
+parameters:
+-   id: input_len
+    label: Input Length
+    dtype: int
+-   id: output_len
+    label: Output Length
+    dtype: int
+-   id: interp_factor
+    label: Interpolation Factor
+    dtype: int
+-   id: debug
+    label: Debug
+    dtype: bool
+    default: 'False'
+    options: ['True', 'False']
+    option_labels: [Enable, Disable]
+-   id: len_key
+    label: Packet length key
+    dtype: string
+    default: '"packet_len"'
+
+
+inputs:
+-   domain: stream
+    dtype: complex
+    vlen: ${ input_len }
+
+outputs:
+-   domain: stream
+    dtype: complex
+    vlen: ${ output_len*interp_factor }
+
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

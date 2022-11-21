@@ -1,0 +1,59 @@
+id: mimo_ofdm_jrc_frame_detector
+label: Frame Detector (Coarse CFO)
+category: '[MIMO OFDM JRC]'
+
+templates:
+  imports: import mimo_ofdm_jrc
+  make: mimo_ofdm_jrc.frame_detector(${fft_len}, ${cp_len}, ${threshold}, ${min_n_peaks}, ${ignore_gap}, ${debug})
+
+parameters:
+-   id: fft_len
+    label: FFT Length
+    dtype: int
+-   id: cp_len
+    label: CP Length
+    dtype: int
+-   id: threshold
+    label: Threshold
+    dtype: real
+    default: '0.75'
+-   id: min_n_peaks
+    label: Min Number of Peaks
+    dtype: int
+    default: '2'
+-   id: ignore_gap
+    label: Ignore Peaks
+    dtype: int
+    default: ''
+-   id: debug
+    label: Debug
+    dtype: bool
+    default: 'False'
+    options: ['True', 'False']
+    option_labels: [Enable, Disable]
+
+inputs:
+-   domain: stream
+    dtype: complex
+    multiplicity: '1'
+-   label: abs
+    domain: stream
+    dtype: complex
+    multiplicity: '1'
+-   label: corr
+    domain: stream
+    dtype: float
+    multiplicity: '1'
+
+outputs:
+-   domain: stream
+    dtype: complex
+    multiplicity: '1'
+
+asserts:
+- ${ threshold > 0 }
+- ${ min_n_peaks > 0 }
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

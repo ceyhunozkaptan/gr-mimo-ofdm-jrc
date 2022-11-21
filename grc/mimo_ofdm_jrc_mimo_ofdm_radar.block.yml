@@ -1,0 +1,97 @@
+id: mimo_ofdm_jrc_mimo_ofdm_radar
+label: MIMO OFDM RADAR
+category: '[MIMO OFDM JRC]'
+
+templates:
+  imports: import mimo_ofdm_jrc
+  make: mimo_ofdm_jrc.mimo_ofdm_radar(${fft_len}, ${N_tx}, ${N_rx}, ${N_sym}, ${N_pre}, 
+      ${background_removal}, ${background_record}, ${record_len},
+      ${interp_factor}, ${enable_tx_interleave}, ${radar_chan_file}, ${len_tag_key}, ${debug})
+  callbacks:
+    - set_background_record(${background_record})
+    - capture_radar_data(${capture_sig})
+
+parameters:
+- id: fft_len
+  label: FFT Length
+  dtype: int
+  default: fft_len
+- id: N_tx
+  label: Number of TX Antennas
+  dtype: int
+- id: N_rx
+  label: Number of RX Antennas
+  dtype: int
+- id: N_sym
+  label: Number of OFDM Symbols
+  dtype: int
+- id: N_pre
+  label: Number of SYNC Symbols
+  dtype: int
+- id: background_removal
+  label: Background Removal
+  dtype: bool
+  default: 'True'
+  options: ['True', 'False']
+  option_labels: [Enable, Disable]
+- id: background_record
+  label: Background Recording
+  dtype: bool
+  default: 'True'
+  options: ['True', 'False']
+  option_labels: [Enable, Disable]
+- id: record_len
+  label: Recording Length
+  dtype: int
+  default: '8'
+- id: interp_factor
+  label: Interpolation Factor (Padding)
+  dtype: int
+- id: enable_tx_interleave
+  label: TX Interleaving
+  dtype: bool
+  default: 'False'
+  options: ['True', 'False']
+  option_labels: [Enable, Disable]
+- id: capture_sig
+  label: Capture Radar Channel
+  dtype: bool
+  default: 'False'
+  options: ['True', 'False']
+  option_labels: [Enable, Disable]
+  hide: part
+- id: radar_chan_file
+  label: Radar Channel Est. File
+  dtype: string
+  default: '""'
+  hide: part
+- id: len_tag_key
+  label: Length Tag Key
+  dtype: string
+  default: '"packet_len"'
+- id: debug
+  label: Debug
+  dtype: bool
+  default: 'False'
+  options: ['True', 'False']
+  option_labels: [Enable, Disable]
+
+inputs:
+- domain: stream
+  label: tx
+  dtype: complex
+  vlen: ${ fft_len }
+  multiplicity: ${ N_tx }
+- domain: stream
+  label: rx
+  dtype: complex
+  vlen: ${ fft_len }
+  multiplicity: ${ N_rx }
+
+outputs:
+- domain: stream
+  dtype: complex
+  vlen: ${ fft_len * interp_factor}
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

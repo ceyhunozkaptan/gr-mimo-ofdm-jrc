@@ -1,0 +1,70 @@
+id: mimo_ofdm_jrc_range_angle_estimator
+label: Range-Angle Estimator
+category: '[MIMO OFDM JRC]'
+
+templates:
+  imports: import mimo_ofdm_jrc
+  make: mimo_ofdm_jrc.range_angle_estimator(${vlen}, ${range_bins}, ${angle_bins}, ${noise_discard_range}, ${noise_discard_angle}, ${snr_threshold}, ${power_threshold}, ${stats_path}, ${stats_record}, ${len_key}, ${debug})
+
+  callbacks:
+  - set_snr_threshold(${snr_threshold});
+  - set_power_threshold(${power_threshold});
+  - set_stats_record(${stats_record});
+
+parameters:
+-   id: vlen
+    label: Vector Length
+    dtype: int
+-   id: range_bins
+    label: Range Bins
+    dtype: real_vector
+-   id: angle_bins
+    label: Angle Bins
+    dtype: real_vector
+-   id: noise_discard_range
+    label: Discard Range for Noise Est [m]
+    dtype: float 
+-   id: noise_discard_angle
+    label: Discard Angle for Noise Est [deg]
+    dtype: float 
+-   id: snr_threshold
+    label: SNR Threshold
+    dtype: float
+-   id: power_threshold
+    label: Power Threshold
+    dtype: float
+-   id: stats_path
+    label: Path to Radar Stats
+    dtype: string
+    default: '""'
+-   id: stats_record
+    label: Record Stats
+    dtype: bool
+    default: 'False'
+    options: ['True', 'False']
+    option_labels: [Enable, Disable]
+-   id: len_key
+    label: Packet Length Key
+    dtype: string
+    default: '"packet_len"'
+-   id: debug
+    label: Debug
+    dtype: bool
+    default: 'False'
+    options: ['True', 'False']
+    option_labels: [Enable, Disable]
+
+inputs:
+-   label: IQ
+    domain: stream
+    dtype: complex
+    vlen: ${ vlen }
+
+outputs:
+-   domain: message
+    id: params
+    optional: true
+    
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

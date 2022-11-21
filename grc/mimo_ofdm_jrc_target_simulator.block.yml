@@ -1,0 +1,88 @@
+id: mimo_ofdm_jrc_target_simulator
+label: Target Simulator
+category: '[MIMO OFDM JRC]'
+
+templates:
+  imports: import mimo_ofdm_jrc
+  make: mimo_ofdm_jrc.target_simulator(${range}, ${velocity}, ${rcs}, ${azimuth},
+        ${position_rx}, ${samp_rate}, ${center_freq}, ${self_coupling_db}, ${rndm_phaseshift},
+        ${self_coupling}, ${len_key}, ${debug})
+
+  callbacks:
+    - setup_targets(${range}, ${velocity}, ${rcs}, ${azimuth}, ${position_rx}, ${samp_rate},
+        ${center_freq}, ${self_coupling_db}, ${rndm_phaseshift}, ${self_coupling})
+
+parameters:
+-   id: range
+    label: Range [m]
+    dtype: real_vector
+
+-   id: velocity
+    label: Velocity [m/s]
+    dtype: real_vector
+
+-   id: azimuth
+    label: Azimuth [Degrees]
+    dtype: real_vector
+
+-   id: rcs
+    label: RCS [m2]
+    dtype: real_vector
+
+-   id: position_rx
+    label: Position of RX Antennas (relative to TX)
+    dtype: real_vector
+    default: 0,
+    hide: part
+
+-   id: samp_rate
+    label: Sample Rate [Hz]
+    dtype: int
+
+-   id: center_freq
+    label: Center Frequency [Hz]
+    dtype: float
+
+-   id: self_coupling_db
+    label: Self Coupling [dB]
+    dtype: float
+    hide: part
+    
+-   id: rndm_phaseshift
+    label: Enable Random Phase Shift
+    dtype: bool
+    default: 'False'
+    options: ['True', 'False']
+    hide: part
+
+-   id: self_coupling
+    label: Enable Self Coupling
+    dtype: bool
+    default: 'False'
+    options: ['True', 'False']
+    hide: part
+
+-   id: len_key
+    label: Packet length key
+    dtype: string
+    default: '"packet_len"'
+
+-   id: debug
+    label: Debug
+    dtype: bool
+    default: 'False'
+    options: ['True', 'False']
+    option_labels: [Enable, Disable]
+
+inputs:
+-   domain: stream
+    dtype: complex
+
+outputs:
+-   domain: stream
+    dtype: complex
+    multiplicity: ${ len(position_rx) }
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

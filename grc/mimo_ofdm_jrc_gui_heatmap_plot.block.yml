@@ -1,0 +1,68 @@
+id: mimo_ofdm_jrc_gui_heatmap_plot
+label: Heatmap Plot (GUI)
+category: '[MIMO OFDM JRC]'
+
+templates:
+  imports: import mimo_ofdm_jrc
+  make: mimo_ofdm_jrc.gui_heatmap_plot(${vlen}, ${interval}, ${xlabel}, ${ylabel}, ${label}, ${axis_x}, ${axis_y}, ${dynamic_range_db}, ${x_axis_ticks}, ${y_axis_ticks}, ${autoscale_z}, ${db_scale}, ${len_key})
+
+parameters:
+-   id: vlen
+    label: Input Length
+    dtype: int
+    hide: ${ 'part' if vlen == 1 else 'none' }
+-   id: interval
+    label: Update Interval [ms]
+    dtype: int
+-   id: xlabel
+    label: x-Axis Label
+    dtype: string
+-   id: ylabel
+    label: y-Axis Label
+    dtype: string
+-   id: label
+    label: Title Label
+    dtype: string
+-   id: axis_x
+    label: x-Axis Values
+    dtype: real_vector
+-   id: axis_y
+    label: y-Axis Values
+    dtype: real_vector
+-   id: dynamic_range_db
+    label: Dynamic Range [dB]
+    dtype: float
+    default: '15'
+-   id: x_axis_ticks
+    label: x-Axis Ticks
+    dtype: real_vector
+    hide: part
+-   id: y_axis_ticks
+    label: y-Axis Ticks
+    dtype: real_vector
+    hide: part
+-   id: autoscale_z
+    label: Autoscale z-Axis
+    dtype: bool
+    default: 'True'
+    options: ['True', 'False']
+-   id: db_scale
+    label: dB Scale
+    dtype: bool
+    default: 'False'
+    options: ['True', 'False']
+    option_labels: [Enable, Disable]
+-   id: len_key
+    label: Packet length key
+    dtype: string
+    default: '"packet_len"'
+    hide: part
+
+inputs:
+-   domain: stream
+    dtype: float
+    vlen: ${ vlen }
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

@@ -1,0 +1,5 @@
+.vscode/
+build/
+
+examples/**/*.py
+examples/**/__pycache__/

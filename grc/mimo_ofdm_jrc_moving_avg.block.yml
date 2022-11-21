@@ -1,0 +1,42 @@
+id: mimo_ofdm_jrc_moving_avg
+label: Moving Average
+category: '[MIMO OFDM JRC]'
+
+templates:
+  imports: import mimo_ofdm_jrc
+  make: mimo_ofdm_jrc.moving_avg(${length}, ${scale}, ${max_iter}, ${debug})
+
+  callbacks:
+    - set_length_and_scale(${length}, ${scale})
+
+parameters:
+-   id: length
+    label: Averaging Depth
+    dtype: int
+    default: '1000'
+-   id: scale
+    label: Scaling Factor
+    dtype: float
+    default: '1'
+-   id: max_iter
+    label: Max Iter
+    dtype: int
+    default: '4000'
+-   id: debug
+    label: Debug
+    dtype: bool
+    default: 'False'
+    options: ['True', 'False']
+    option_labels: [Enable, Disable]
+
+inputs:
+-   domain: stream
+    dtype: complex
+
+outputs:
+-   domain: stream
+    dtype: complex
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

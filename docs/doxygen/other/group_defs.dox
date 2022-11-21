@@ -1,0 +1,7 @@
+/*!
+ * \defgroup block GNU Radio MIMO_OFDM_JRC C++ Signal Processing Blocks
+ * \brief All C++ blocks that can be used from the MIMO_OFDM_JRC GNU Radio
+ *        module are listed here or in the subcategories below.
+ *
+ */
+

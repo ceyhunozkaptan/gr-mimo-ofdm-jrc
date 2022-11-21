@@ -1,0 +1,32 @@
+id: mimo_ofdm_jrc_ofdm_cyclic_prefix_remover
+label: OFDM Cyclic Prefix Remover
+category: '[MIMO OFDM JRC]'
+
+templates:
+  imports: import mimo_ofdm_jrc
+  make: mimo_ofdm_jrc.ofdm_cyclic_prefix_remover(${fft_len}, ${cp_len}, ${len_key})
+
+parameters:
+-   id: fft_len
+    label: FFT length
+    dtype: int
+-   id: cp_len
+    label: CP length
+    dtype: int
+-   id: len_key
+    label: Packet length key
+    dtype: string
+    default: '"packet_len"'
+
+inputs:
+-   domain: stream
+    dtype: complex
+
+outputs:
+-   domain: stream
+    dtype: complex
+    vlen: ${ fft_len }
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

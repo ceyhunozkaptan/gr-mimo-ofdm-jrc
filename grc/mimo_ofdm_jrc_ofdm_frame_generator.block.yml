@@ -1,0 +1,61 @@
+id: mimo_ofdm_jrc_ofdm_frame_generator
+label: OFDM Frame Generator
+category: '[MIMO OFDM JRC]'
+
+templates:
+  imports: import mimo_ofdm_jrc
+  make: mimo_ofdm_jrc.ofdm_frame_generator()
+
+parameters:
+-   id: fft_len
+    label: FFT length
+    dtype: int
+    default: fft_len
+    hide: ${ 'part' if fft_len == 1 else 'none' }
+-   id: occupied_carriers
+    label: Occupied Carriers
+    dtype: raw
+-   id: pilot_carriers
+    label: Pilot Carriers
+    dtype: raw
+    default: ((),)
+-   id: pilot_symbols
+    label: Pilot Symbols
+    dtype: raw
+    default: ((),)
+-   id: sync_words
+    label: Sync Symbols
+    dtype: raw
+    default: ((),)
+-   id: ltf_len
+    label: Number of LTF Symbols
+    dtype: int
+-   id: len_tag_key
+    label: Length tag key
+    dtype: string
+    default: '"packet_len"'
+-   id: output_is_shifted
+    label: Shift Output
+    dtype: enum
+    default: 'True'
+    options: ['False', 'True']
+    option_labels: ['No', 'Yes']
+
+inputs:
+-   domain: stream
+    dtype: complex
+
+outputs:
+-   domain: stream
+    dtype: complex
+    vlen: ${ fft_len }
+
+templates:
+    imports: import mimo_ofdm_jrc
+    make: mimo_ofdm_jrc.ofdm_frame_generator(
+        ${fft_len}, ${occupied_carriers}, ${pilot_carriers},
+        ${pilot_symbols}, ${sync_words}, ${ltf_len}, ${len_tag_key}, ${output_is_shifted})
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1

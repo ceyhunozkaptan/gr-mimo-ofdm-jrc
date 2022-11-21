@@ -1,0 +1,101 @@
+id: mimo_ofdm_jrc_mimo_ofdm_equalizer
+label: MIMO OFDM Equalizer
+category: '[MIMO OFDM JRC]'
+
+templates:
+  imports: import mimo_ofdm_jrc
+  make: mimo_ofdm_jrc.mimo_ofdm_equalizer(${estimator}, 
+          ${freq}, ${bw}, ${fft_len},
+          ${cp_len}, ${data_carriers}, ${pilot_carriers}, ${pilot_symbols},
+          ${long_seq}, ${mapped_ltf_symbols}, ${n_mimo_ltf}, ${chan_est_file}, ${comm_log_file}, ${stats_record}, ${debug})
+  callbacks:
+    - set_estimator(${estimator})
+    - set_frequency(${freq})
+    - set_bandwidth(${bw})
+    - set_stats_record(${stats_record})
+
+parameters:
+-   id: estimator
+    label: Algorithm
+    dtype: int
+    default: '1'
+    options: ['0', '1']
+    option_labels: [LS, STA]
+-   id: freq
+    label: Frequency
+    dtype: real
+-   id: bw
+    label: Bandwidth
+    dtype: real
+    default: 'samp_rate'
+-   id: fft_len
+    label: FFT Length
+    dtype: int
+    default: 'fft_len'
+-   id: cp_len
+    label: CP Length
+    dtype: int
+    default: 'cp_len'
+-   id: data_carriers
+    label: Data Subcarriers
+    dtype: int_vector
+-   id: pilot_carriers
+    label: Pilot Subcarriers
+    dtype: int_vector
+-   id: pilot_symbols
+    label: Pilot Symbols
+    dtype: raw
+-   id: long_seq
+    label: LTF Sequence
+    dtype: complex_vector
+-   id: mapped_ltf_symbols
+    label: MIMO LTF Symbols
+    dtype: raw
+-   id: n_mimo_ltf
+    label: MIMO LTF Length
+    dtype: int
+-   id: chan_est_file
+    label: Comm. Channel Est. File
+    dtype: string
+    default: '""'
+    hide: part
+-   id: comm_log_file
+    label: Comm. Log File
+    dtype: string
+    default: '""'
+    hide: part
+-   id: stats_record
+    label: Logging Stats
+    dtype: bool
+    default: 'False'
+    options: ['True', 'False']
+    option_labels: [Enable, Disable]
+-   id: debug
+    label: Debug
+    dtype: bool
+    default: 'False'
+    options: ['True', 'False']
+    option_labels: [Enable, Disable]
+
+inputs:
+-   domain: stream
+    dtype: complex
+    vlen: ${ fft_len }
+    multiplicity: '1'
+
+outputs:
+# -   domain: stream
+#     dtype: byte
+#     vlen: ${ len(data_carriers) }
+#     multiplicity: '1'
+# -   domain: message
+#     id: complex
+#     optional: true
+-   domain: stream
+    dtype: complex
+    vlen: ${ len(data_carriers) }
+    multiplicity: '1'
+
+#  'file_format' specifies the version of the GRC yml format used in the file
+#  and should usually not be changed.
+file_format: 1
