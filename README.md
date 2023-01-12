@@ -32,4 +32,4 @@ This project is developed and tested in Ubuntu 20.04 and Ubuntu 22.04. We recomm
 # Related Publications
 
 * C. D. Ozkaptan, E. Ekici, C. -H. Wang and O. Altintas, "[Optimal Precoder Design for MIMO-OFDM-based Joint Automotive Radar-Communication Networks](https://ieeexplore.ieee.org/abstract/document/9589830/)," International Symposium on Modeling and Optimization in Mobile, Ad hoc, and Wireless Networks (WiOpt), 2021
-
+* C. D. Ozkaptan, E. Ekici, C. -H. Wang and O. Altintas, "Software-Defined MIMO OFDM Joint Radar-Communication Platform with Fully Digital mmWave Architecture," 2023 3st IEEE International Symposium on Joint Communications & Sensing (JC&S)
