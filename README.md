@@ -1,6 +1,8 @@
-## MIMO OFDM Joint Radar-Communication (JRC) Transceiver
+# MIMO OFDM Joint Radar-Communication (JRC) Transceiver
 
 This project is developed and tested in Ubuntu 20.04 and Ubuntu 22.04. We recommend installing GnuRadio and UHD from source whose links are provided below. Additionally, this project uses Eigen3 library for linear algebra operations in C++.
+
+### [Project Website](https://u.osu.edu/ekici/jrc-testbed/)
 
 ## Requirements
 
@@ -32,4 +34,4 @@ This project is developed and tested in Ubuntu 20.04 and Ubuntu 22.04. We recomm
 # Related Publications
 
 * C. D. Ozkaptan, E. Ekici, C. -H. Wang and O. Altintas, "[Optimal Precoder Design for MIMO-OFDM-based Joint Automotive Radar-Communication Networks](https://ieeexplore.ieee.org/abstract/document/9589830/)," International Symposium on Modeling and Optimization in Mobile, Ad hoc, and Wireless Networks (WiOpt), 2021
-* C. D. Ozkaptan, H. Zhu, E. Ekici, and O. Altintas, "Software-Defined MIMO OFDM Joint Radar-Communication Platform with Fully Digital mmWave Architecture," 2023 3rd IEEE International Symposium on Joint Communications & Sensing (JC&S)
+* C. D. Ozkaptan, H. Zhu, E. Ekici, and O. Altintas, "[Software-Defined MIMO OFDM Joint Radar-Communication Platform with Fully Digital mmWave Architecture](https://arxiv.org/abs/2302.05812)," 2023 3rd IEEE International Symposium on Joint Communications & Sensing (JC&S)
