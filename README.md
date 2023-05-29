@@ -29,6 +29,9 @@ This project is developed and tested in Ubuntu 20.04 and Ubuntu 22.04. We recomm
 
 ## Usage
 
+### [Packet Generator App](https://github.com/ceyhunozkaptan/mimo-ofdm-packet-generator): 
+This application can be used to generate Data Packets (DATA) or Null Data Packets (NDP). It utilizes an internal UDP socket to send packets to the GnuRadio flowgraph.
+
 ### Simulation
 
 # Related Publications
