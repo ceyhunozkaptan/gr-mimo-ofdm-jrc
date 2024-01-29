@@ -1,9 +1,22 @@
 # MIMO OFDM Joint Radar-Communication (JRC) Transceiver
 
-This project is developed and tested in Ubuntu 20.04 and Ubuntu 22.04. We recommend installing GnuRadio and UHD from source whose links are provided below. Additionally, this project uses Eigen3 library for linear algebra operations in C++.
-
 ### [Project Website](https://u.osu.edu/ekici/jrc-testbed/)
 
+This project is developed and tested in Ubuntu 20.04 and Ubuntu 22.04. We recommend installing GnuRadio and UHD from source codes whose links are provided below. Additionally, this project uses the Eigen3 library for linear algebra operations in C++.
+
+If you used our project, we kindly request that you acknowledge our work by citing our paper:
+```
+@ARTICLE{10345495,
+  author={Ozkaptan, Ceyhun D. and Zhu, Haocheng and Ekici, Eylem and Altintas, Onur},
+  journal={IEEE Transactions on Wireless Communications}, 
+  title={A mmWave MIMO Joint Radar-Communication Testbed with Radar-assisted Precoding}, 
+  year={2023},
+  volume={},
+  number={},
+  pages={1-1},
+  keywords={MIMO communication;OFDM;Radar;Radar antennas;Millimeter wave communication;Transceivers;MIMO radar},
+  doi={10.1109/TWC.2023.3337282}}
+```
 ## Requirements
 
 + [GnuRadio v3.8.5.0](https://wiki.gnuradio.org/index.php?title=InstallingGR#For_GNU_Radio_3.8_or_Earlier) (Branch: maint-3.8)
@@ -30,11 +43,12 @@ This project is developed and tested in Ubuntu 20.04 and Ubuntu 22.04. We recomm
 ## Usage
 
 ### [Packet Generator App](https://github.com/ceyhunozkaptan/mimo-ofdm-packet-generator): 
-This application can be used to generate Data Packets (DATA) or Null Data Packets (NDP). It utilizes an internal UDP socket to send packets to the GnuRadio flowgraph.
+This application can generate Data Packets (DATA) or Null Data Packets (NDP). It utilizes an internal UDP socket to send packets to the GnuRadio flowgraph.
 
 ### Simulation
 
 # Related Publications
-
-* C. D. Ozkaptan, E. Ekici, C. -H. Wang and O. Altintas, "[Optimal Precoder Design for MIMO-OFDM-based Joint Automotive Radar-Communication Networks](https://ieeexplore.ieee.org/abstract/document/9589830/)," International Symposium on Modeling and Optimization in Mobile, Ad hoc, and Wireless Networks (WiOpt), 2021
+* C. D. Ozkaptan, H. Zhu, E. Ekici and O. Altintas, "[A mmWave MIMO Joint Radar-Communication Testbed with Radar-assisted Precoding](https://ieeexplore.ieee.org/abstract/document/10345495)," in IEEE Transactions on Wireless Communications, 2023, doi: 10.1109/TWC.2023.3337282
 * C. D. Ozkaptan, H. Zhu, E. Ekici, and O. Altintas, "[Software-Defined MIMO OFDM Joint Radar-Communication Platform with Fully Digital mmWave Architecture](https://arxiv.org/abs/2302.05812)," 2023 3rd IEEE International Symposium on Joint Communications & Sensing (JC&S)
+* C. D. Ozkaptan, E. Ekici, C. -H. Wang and O. Altintas, "[Optimal Precoder Design for MIMO-OFDM-based Joint Automotive Radar-Communication Networks](https://ieeexplore.ieee.org/abstract/document/9589830/)," International Symposium on Modeling and Optimization in Mobile, Ad hoc, and Wireless Networks (WiOpt), 2021
+
